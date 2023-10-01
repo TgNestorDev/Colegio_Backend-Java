@@ -26,4 +26,10 @@ public class ProfesorDaoImp implements ProfesorDao{
     public void registrarProfesor(Profesor profesor) {
         entityManager.merge(profesor);
     }
+
+    @Override
+    public void eliminarProfesor(Long id) {
+        Profesor profesor= entityManager.find(Profesor.class, id);
+        entityManager.remove(profesor);
+    }
 }

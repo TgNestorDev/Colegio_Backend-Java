@@ -8,4 +8,6 @@ public interface ProfesorDao {
     List<Profesor> getProfesores();
 
     void registrarProfesor(Profesor profesor);
+
+    void eliminarProfesor(Long id);
 }
