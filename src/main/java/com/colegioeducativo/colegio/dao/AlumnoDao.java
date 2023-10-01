@@ -8,4 +8,6 @@ public interface AlumnoDao {
     List<Alumno> getAlumnos();
 
     void registrarAlumno(Alumno alumno);
+
+    void eliminarAlumno(Long id);
 }

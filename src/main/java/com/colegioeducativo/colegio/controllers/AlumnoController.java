@@ -3,10 +3,7 @@ package com.colegioeducativo.colegio.controllers;
 import com.colegioeducativo.colegio.dao.AlumnoDao;
 import com.colegioeducativo.colegio.models.Alumno;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +20,9 @@ public class AlumnoController {
     @RequestMapping(value = "api/alumnos", method = RequestMethod.POST)
     public void postAlumno(@RequestBody Alumno alumno){
         alumnoDao.registrarAlumno(alumno);
+    }
+    @RequestMapping(value = "api/alumnos/{id}", method = RequestMethod.DELETE)
+    public void deleteAlumno(@PathVariable Long id){
+        alumnoDao.eliminarAlumno(id);
     }
 }
