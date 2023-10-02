@@ -1,8 +1,9 @@
 package com.colegioeducativo.colegio.controllers;
-
 import com.colegioeducativo.colegio.dao.AlumnoDao;
 import com.colegioeducativo.colegio.models.Alumno;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,17 +13,19 @@ public class AlumnoController {
     @Autowired
     private AlumnoDao alumnoDao;
 
-    @RequestMapping(value = "api/alumnos", method = RequestMethod.GET)
-    public List<Alumno> getAlumnos(){
-        return alumnoDao.getAlumnos();
+    @GetMapping(value = "api/alumnos")
+    public ResponseEntity<List<Alumno>> getAlumnos(){
+        return new ResponseEntity<>(alumnoDao.getAlumnos(), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "api/alumnos", method = RequestMethod.POST)
-    public void postAlumno(@RequestBody Alumno alumno){
+    @PostMapping(value = "api/alumnos")
+    public ResponseEntity postAlumno(@RequestBody Alumno alumno){
         alumnoDao.registrarAlumno(alumno);
+        return new ResponseEntity(HttpStatus.CREATED);
     }
-    @RequestMapping(value = "api/alumnos/{id}", method = RequestMethod.DELETE)
-    public void deleteAlumno(@PathVariable Long id){
+    @DeleteMapping(value = "api/alumnos/{id}")
+    public ResponseEntity deleteAlumno(@PathVariable Long id){
         alumnoDao.eliminarAlumno(id);
+        return new ResponseEntity(HttpStatus.OK);
     }
 }
