@@ -16,8 +16,11 @@ public class LoginController {
     private LoginDao loginDao;
 
     @PostMapping(value = "api/login")
-    public ResponseEntity login(@RequestBody Persona persona){
-        loginDao.verificarDatos(persona);
-        return new ResponseEntity(HttpStatus.OK);
+    public boolean login(@RequestBody Persona persona){
+        if (loginDao.verificarDatos(persona)){
+            return  true;
+        }
+        return false;
+
     }
 }
