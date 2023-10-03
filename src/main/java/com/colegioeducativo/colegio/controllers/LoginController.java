@@ -16,11 +16,8 @@ public class LoginController {
     private LoginDao loginDao;
 
     @PostMapping(value = "api/login")
-    public String login(@RequestBody Persona persona){
-        if (loginDao.verificarDatos(persona)){
-            return "Existe";
-        }
-        return "No existe usuario";
-
+    public ResponseEntity login(@RequestBody Persona persona){
+        loginDao.verificarDatos(persona);
+        return new ResponseEntity(HttpStatus.OK);
     }
 }
