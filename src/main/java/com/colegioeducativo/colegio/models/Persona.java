@@ -22,6 +22,8 @@ public class Persona {
     private String correo;
     @Getter @Setter @Column(name="celular", nullable = false, length = 10)
     private String celular;
+    @Getter @Setter @Column(name="rol", nullable = false, length = 50)
+    private String rol;
     @Getter @Setter @Column(name="usuario", nullable = false, length = 50)
     private String usuario;
     @Getter @Setter @Column(name="contrasenia", nullable = false, length = 255)
